@@ -28,3 +28,17 @@ const httpInterceptor = {
 }
 uni.addInterceptor('request', httpInterceptor)
 uni.addInterceptor('uploadFile', httpInterceptor)
+
+/**
+ * 请求函数封装
+ */
+const http = (options: UniApp.RequestOptions) => {
+  return new Promise((resolve, reject) => {
+    uni.request({
+      ...options,
+      success(res) {
+        reject(res)
+      },
+    })
+  })
+}
