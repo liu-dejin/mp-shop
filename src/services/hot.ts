@@ -1,4 +1,5 @@
 import type { PageParams } from '@/types/global'
+import type { HotResult } from '@/types/hot'
 import { http } from '@/utils/http'
 
 type hotParams = PageParams & { subType?: string }
@@ -8,7 +9,7 @@ type hotParams = PageParams & { subType?: string }
  * @param data 请求参数
  */
 export const getHotRecommendApi = (url: string, data?: hotParams) =>
-  http({
+  http<HotResult>({
     method: 'GET',
     url,
     data,
