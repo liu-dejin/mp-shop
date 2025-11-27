@@ -34,7 +34,7 @@ const activeIndex = ref(0)
 const getHotRecommendData = async () => {
   const res = await getHotRecommendApi(currUrlMap!.url, {
     // 技巧：环境变量，开发环境，修改初始页面方便测试分页结果
-    page: import.meta.env.DEV ? 30 : 1,
+    page: import.meta.env.DEV ? 8 : 1,
     pageSize: 10,
   })
   bannerPicture.value = res.result.bannerPicture
