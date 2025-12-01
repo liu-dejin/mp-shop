@@ -1,0 +1,13 @@
+import type { AddressParams } from '@/types/address'
+import { http } from '@/utils/http'
+
+/**
+ * 添加收货地址
+ * @param data 收货地址参数
+ */
+export const postMemberAddressApi = (data: AddressParams) =>
+  http({
+    method: 'POST',
+    url: '/member/address',
+    data,
+  })
