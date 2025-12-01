@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { postMemberAddressApi } from '@/services/address'
+import { getMemberAddressByIdApi, postMemberAddressApi } from '@/services/address'
+import { onLoad } from '@dcloudio/uni-app'
 import { ref } from 'vue'
 
 // 表单数据
@@ -40,6 +41,17 @@ const onSwitchChange: UniHelper.SwitchOnChange = (ev) => {
   form.value.isDefault = ev.detail.value ? 1 : 0
 }
 
+// 获取售后地址详情数据
+const getMemberAddressByIdData = async () => {
+  if (query.id) {
+    const res = await getMemberAddressByIdApi(query.id)
+    Object.assign(form.value, res.result)
+  }
+}
+// 页面加载
+onLoad(() => {
+  getMemberAddressByIdData()
+})
 // 提交表单
 const onSubmit = async () => {
   await postMemberAddressApi(form.value)
