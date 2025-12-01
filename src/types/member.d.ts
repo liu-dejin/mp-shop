@@ -40,5 +40,5 @@ export type ProfileParams = Pick<
   /* 城市编码*/
   cityCode?: string
   /* 区县编码*/
-  districtCode?: string
+  countyCode?: string
 }
