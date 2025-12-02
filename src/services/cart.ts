@@ -27,3 +27,12 @@ export const delectMemberCartApi = (data: { ids: string[] }) =>
     url: '/member/cart',
     data,
   })
+/**
+ * 修改购物车商品数量
+ */
+export const putMemberCartApi = (skuId: string, data: { selected?: boolean; count?: number }) =>
+  http({
+    method: 'PUT',
+    url: `/member/cart/${skuId}`,
+    data,
+  })
