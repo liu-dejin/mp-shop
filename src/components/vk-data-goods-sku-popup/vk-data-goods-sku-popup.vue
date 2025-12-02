@@ -1,4 +1,3 @@
-
 <!--
 【开箱即用】商品sku选择器组件豪华独立版（打造uni插件市场功能最全的SKU选择器组件）
 插件名称：vk-data-goods-sku-popup
