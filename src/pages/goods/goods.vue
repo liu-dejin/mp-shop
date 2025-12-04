@@ -147,12 +147,12 @@ const onBuyNow = async (ev: SkuPopupEvent) => {
     v-model="isShowSku"
     :localdata="localdata"
     :mode="mode"
-    add-cart-background-color="#ffa868"
-    buy-now-background-color="#27ba9b"
+    add-cart-background-color="#FFA868"
+    buy-now-background-color="#27BA9B"
     ref="skuPopupRef"
-    :actived-data="{
-      color: '#27ba9b',
-      borderColor: '#27ba9b',
+    :actived-style="{
+      color: '#27BA9B',
+      borderColor: '#27BA9B',
       backgroundColor: '#E9F8F5',
     }"
     @add-cart="onAddCart"
