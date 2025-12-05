@@ -168,6 +168,12 @@
   </view>
 </template>
 <style>
+/* H5和APP 默认开启样式隔离 */
+/* #ifdef H5 || APP-PLUS */
+@import url('@/components/styles/XtxSwiper.scss');
+@import url('./styles/HotPanel.scss');
+@import url('./styles/CategoryPanel.scss');
+/* #endif */
 .sk-transparent {
   color: transparent !important;
 }

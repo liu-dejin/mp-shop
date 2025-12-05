@@ -5,3 +5,8 @@ import cartMain from './components/cartMain.vue'
 <template>
   <cartMain />
 </template>
+<style lang="scss">
+page {
+  height: 100%;
+}
+</style>

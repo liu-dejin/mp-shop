@@ -21,6 +21,7 @@ onLoad(() => {
 const memberStore = useMemberStore()
 // 修改头像
 const onAvatarChange = () => {
+  // #ifdef MP-WEIXIN
   // 调用照相和上次视频
   uni.chooseMedia({
     // 文件个数
@@ -29,30 +30,43 @@ const onAvatarChange = () => {
     mediaType: ['image'],
     success: (res) => {
       const { tempFilePath } = res.tempFiles[0]
-      // 文件上传 /member/profile/avatar
-      uni.uploadFile({
-        url: '/member/profile/avatar',
-        name: 'file',
-        filePath: tempFilePath,
-        success: (res) => {
-          if (res.statusCode === 200) {
-            const avatar = JSON.parse(res.data).result.avatar
-            // 个人信息页头像更新
-            profile.value!.avatar = avatar
-            // store头像更新
-            memberStore.profile!.avatar = avatar
-            uni.showToast({
-              icon: 'success',
-              title: '更新成功',
-            })
-          } else {
-            uni.showToast({
-              icon: 'error',
-              title: '出现错误',
-            })
-          }
-        },
-      })
+      uploadFile(tempFilePath)
+    },
+  })
+  // #endif
+  // #ifdef H5 || APP-PLUS
+  uni.chooseImage({
+    count: 1,
+    success: (res) => {
+      const tempFilePath = res.tempFilePaths[0]
+      uploadFile(tempFilePath)
+    },
+  })
+  // #endif
+}
+const uploadFile = (tempFilePath: string) => {
+  // 文件上传 /member/profile/avatar
+  uni.uploadFile({
+    url: '/member/profile/avatar',
+    name: 'file',
+    filePath: tempFilePath,
+    success: (res) => {
+      if (res.statusCode === 200) {
+        const avatar = JSON.parse(res.data).result.avatar
+        // 个人信息页头像更新
+        profile.value!.avatar = avatar
+        // store头像更新
+        memberStore.profile!.avatar = avatar
+        uni.showToast({
+          icon: 'success',
+          title: '更新成功',
+        })
+      } else {
+        uni.showToast({
+          icon: 'error',
+          title: '出现错误',
+        })
+      }
     },
   })
 }
@@ -100,7 +114,9 @@ const onSubmit = async () => {
   <view class="viewport">
     <!-- 导航栏 -->
     <view class="navbar" :style="{ paddingTop: safeAreaInsets?.top + 'px' }">
+      <!-- #ifdef MP-WEIXIN -->
       <navigator open-type="navigateBack" class="back icon-left" hover-class="none"></navigator>
+      <!-- #endif -->
       <view class="title">个人信息</view>
     </view>
     <!-- 头像 -->

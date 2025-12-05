@@ -12,7 +12,7 @@ const httpInterceptor = {
       options.url = baseURL + options.url
     }
     //超时时间
-    options.timeout = 10000
+    options.timeout = 100000
     //添加请求头
     options.header = {
       'source-client': 'miniapp',
